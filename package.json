@@ -32,7 +32,7 @@
     "stop": "egg-scripts stop --title=egg-server-example",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
-    "test": "egg-scripts start --env=prod --daemon --title=egg-server-example --ignore-stderr",
+    "test": "egg-scripts start --env=dev --daemon --title=egg-server-example --ignore-stderr",
     "test-local": "egg-bin test",
     "cov": "egg-bin cov",
     "lint": "eslint .",
