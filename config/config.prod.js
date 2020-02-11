@@ -23,17 +23,17 @@ module.exports = appInfo => {
     },
   };
   // mongodb 数据库设置
-  config.mongoose = {
-    client: {
-      url: 'mongodb://47.98.50.170/web-blog-dep',
-      useNewUrlParser: true,
-      options: {
-        mongos: true,
-        useUnifiedTopology: true,
-        useNewUrlParser: true,
-      },
-    },
-  };
+  // config.mongoose = {
+  //   client: {
+  //     url: 'mongodb://47.98.50.170/web-blog-dep',
+  //     useNewUrlParser: true,
+  //     options: {
+  //       mongos: true,
+  //       useUnifiedTopology: true,
+  //       useNewUrlParser: true,
+  //     },
+  //   },
+  // };
   // 设置redis
   config.redis = {
     // 单个redis
