@@ -38,7 +38,7 @@ module.exports = appInfo => {
   config.redis = {
     // 单个redis
     client: {
-      host: '39.105.181.82', // Redis host
+      host: '47.98.50.170', // Redis host
       port: 6379, // Redis port
       password: 'caiwenduo1993',
       db: 1,
