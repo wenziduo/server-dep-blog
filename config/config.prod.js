@@ -31,6 +31,11 @@ module.exports = appInfo => {
         mongos: true,
         useUnifiedTopology: true,
         useNewUrlParser: true,
+        // autoIndex: false,
+        // replicaSet: 'rs0',
+        // readPreference: 'secondary',
+        // w: 'majority',
+        // authSouce: 'admin'
       },
     },
   };
