@@ -28,9 +28,9 @@
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --env=prod --daemon --title=egg-server-example",
-    "test": "egg-scripts start --env=checkout --daemon --title=egg-server-example --ignore-stderr",
-    "stop": "egg-scripts stop --title=egg-server-example",
+    "start": "egg-scripts start --env=prod --daemon --title=server-dep-blog",
+    "test": "egg-scripts start --env=checkout --daemon --title=server-dep-blog --ignore-stderr",
+    "stop": "egg-scripts stop --title=server-dep-blog",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "unit": "npm run lint -- --fix && npm run test-local",
