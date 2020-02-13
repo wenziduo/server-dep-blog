@@ -22,4 +22,8 @@ module.exports = {
     enable: true,
     package: 'egg-mongoose',
   },
+  alinode: {
+    enable: true,
+    package: 'egg-alinode',
+  },
 };
