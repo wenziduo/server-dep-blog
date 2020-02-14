@@ -31,6 +31,7 @@
   "scripts": {
     "start": "egg-scripts start --env=prod --daemon --title=server-dep-blog",
     "test": "egg-scripts start --env=checkout --daemon --title=server-dep-blog --ignore-stderr",
+    "start-log": "egg-scripts start --daemon",
     "stop": "egg-scripts stop --title=server-dep-blog",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
