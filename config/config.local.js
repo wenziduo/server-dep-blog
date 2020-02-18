@@ -18,7 +18,7 @@ module.exports = appInfo => {
   config.cluster = {
     listen: {
       path: '',
-      port: 7001,
+      port: 8019,
       hostname: '0.0.0.0',
     },
   };
@@ -62,6 +62,14 @@ module.exports = appInfo => {
     accessKey: 'y2suiyW_lcVyb-E1RkJiL-g4WiBMN3f69QjrbtKd',
     secretKey: '4AgJMyTfmQggOsa2jnCPXvlJInJGNXS1Irm2pfHY',
     bucket: 'caiwenduo', // 空间名称
+  };
+  // 阿里监控
+  config.alinode = {
+    server: 'wss://agentserver.node.aliyun.com:8080',
+    appid: '83678',
+    secret: '1fff81033cea6a187d85f663b2cb79a36362cc2d',
+    // logdir: 'Node.js 性能平台日志输出地址绝对路径，与 NODE_LOG_DIR 保持一致。如：/tmp/',
+    error_log: [ '/root/logs/example/appname-web.log', '/root/logs/example/common-error.log', '/root/logs/example/egg-agent.log' ],
   };
   return {
     ...config,

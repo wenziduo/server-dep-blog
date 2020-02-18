@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 module.exports = app => {
-  const mongoose = app.mongoose
-  const Schema = mongoose.Schema
+  const mongoose = app.mongoose;
+  const Schema = mongoose.Schema;
 
   const PostSchema = new Schema(
     {
@@ -13,12 +13,13 @@ module.exports = app => {
       watch: { type: Number, default: 0 },
       author: { type: String, default: '蚊子' },
       createTime: { type: Date },
-      classifyId: { type: Schema.Types.ObjectId }
+      modifyTime: { type: Date },
+      classifyId: { type: Schema.Types.ObjectId },
     },
     {
-      versionKey: false
+      versionKey: false,
     }
-  )
+  );
 
-  return mongoose.model('Post', PostSchema)
-}
+  return mongoose.model('Post', PostSchema);
+};
