@@ -14,7 +14,7 @@ class ClassifyService extends Service {
       return;
     }
     const resCreate = await ctx.model.Classify.create({
-      title: body.title,
+      ...body,
     });
     if (resCreate) {
       ctx.helper.success('新建成功');
@@ -46,6 +46,8 @@ class ClassifyService extends Service {
       return;
     }
     const resCreate = await ctx.model.Classify.updateOne({
+      _id: params._id,
+    }, {
       ...params,
     });
     return resCreate;
