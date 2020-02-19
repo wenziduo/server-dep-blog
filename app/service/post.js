@@ -45,12 +45,19 @@ class PostService extends Service {
     return resFind;
   }
   async edit(params) {
-    console.log('params', params);
     const resp = await this.ctx.model.Post.updateOne({
       _id: params._id,
-      content: 'nihao',
-      text: 'nihao',
+    }, {
+      ...params,
       modifyTime: new Date(),
+    });
+    if (resp) {
+      return resp;
+    }
+  }
+  async delete(params) {
+    const resp = await this.ctx.model.Post.deleteOne({
+      _id: params._id,
     });
     if (resp) {
       return resp;

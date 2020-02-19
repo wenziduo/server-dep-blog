@@ -28,6 +28,12 @@ class PostController extends Controller {
     const res = await ctx.service.post.edit(params);
     ctx.helper.success(res);
   }
+  async delete() {
+    const { ctx } = this;
+    const params = ctx.request.body;
+    const res = await ctx.service.post.delete(params);
+    ctx.helper.success(res);
+  }
   async test() {
     const { ctx } = this;
     const res = await ctx.model.Post.aggregate([

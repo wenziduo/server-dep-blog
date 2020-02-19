@@ -17,6 +17,7 @@ module.exports = app => {
   router.get('/api/post/detail', controller.post.detail); // 文章详情
   router.get('/api/post/test', controller.post.test); // 文章详情
   router.post('/api/post/edit', controller.post.edit); // 文章编辑
+  router.post('/api/post/delete', controller.post.delete); // 文章删除
   // 第三方
   router.get('/api/qiniu/getQiniuToken', controller.qiniu.getQiniuToken); // 文获取七牛token
 };
