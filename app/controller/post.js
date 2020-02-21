@@ -31,8 +31,7 @@ class PostController extends Controller {
   async delete() {
     const { ctx } = this;
     const params = ctx.request.body;
-    const res = await ctx.service.post.delete(params);
-    ctx.helper.success(res);
+    await ctx.service.post.delete(params);
   }
   async test() {
     const { ctx } = this;

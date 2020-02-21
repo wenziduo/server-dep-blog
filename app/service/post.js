@@ -56,13 +56,21 @@ class PostService extends Service {
     }
   }
   async delete(params) {
-    const session = await ctx.helper.getSession();
+    const session = await this.ctx.helper.getSession();
+    let resp;
     try {
-      var resp = await this.ctx.model.Post.deleteOne({
+      console.log('开始');
+      resp = await this.ctx.model.Post.deleteOne({
         _id: params._id,
       });
-      const resCount = await ctx.service.post.getClassifyCount();
-      await ctx.service.classify.updateCount({ _id: params.classifyId }, resCount);
+      console.log('resp', resp);
+      const resCount = await this.ctx.service.post.getClassifyCount(params);
+      console.log('resCount', resCount);
+      const res = await this.ctx.service.classify.updateCount({ _id: params.classifyId }, resCount);
+      console.log('res', res);
+      // 提交事务
+      // await session.commitTransaction();
+      // this.ctx.end();
     } catch (err) {
       // 事务回滚
       console.log('事务回滚');
@@ -71,14 +79,12 @@ class PostService extends Service {
     } finally {
       console.log('事务结束');
       await session.endSession();
-    }
-    console.log('事务成功');
-    if (resp) {
-      return resp;
+      console.log('事务成功');
+      this.ctx.helper.success('成功');
     }
   }
   async getClassifyCount(params) {
-    const resCount = await ctx.model.Post.find(
+    const resCount = await this.ctx.model.Post.find(
       {
         classifyId: params.classifyId,
       },
