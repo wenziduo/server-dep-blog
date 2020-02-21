@@ -32,7 +32,7 @@
     "start": "egg-scripts start --env=prod --daemon --title=server-dep-blog --ignore-stderr",
     "test": "egg-scripts start --env=checkout --daemon --title=server-dep-blog --ignore-stderr",
     "start-log": "egg-scripts start --daemon",
-    "stop": "egg-scripts stop --title=server-dep-blog",
+    "stop": "egg-scripts stop",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
     "unit": "npm run lint -- --fix && npm run test-local",
