@@ -56,12 +56,35 @@ class PostService extends Service {
     }
   }
   async delete(params) {
-    const resp = await this.ctx.model.Post.deleteOne({
-      _id: params._id,
-    });
+    const session = await ctx.helper.getSession();
+    try {
+      var resp = await this.ctx.model.Post.deleteOne({
+        _id: params._id,
+      });
+      const resCount = await ctx.service.post.getClassifyCount();
+      await ctx.service.classify.updateCount({ _id: params.classifyId }, resCount);
+    } catch (err) {
+      // 事务回滚
+      console.log('事务回滚');
+      await session.abortTransaction();
+      throw err;
+    } finally {
+      console.log('事务结束');
+      await session.endSession();
+    }
+    console.log('事务成功');
     if (resp) {
       return resp;
     }
+  }
+  async getClassifyCount(params) {
+    const resCount = await ctx.model.Post.find(
+      {
+        classifyId: params.classifyId,
+      },
+      { _id: 1 }
+    ).count();
+    return resCount;
   }
   async detail(params) {
     const { ctx } = this;
