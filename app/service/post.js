@@ -37,11 +37,12 @@ class PostService extends Service {
     const { ctx } = this;
     const resFind = await ctx.model.Post.find({
       ...params,
+      length: undefined,
     })
       .sort({
         createTime: -1,
       })
-      .limit(5);
+      .limit(parseInt(params.length));
     return resFind;
   }
   async edit(params) {
