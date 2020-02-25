@@ -1,6 +1,6 @@
 /* eslint valid-jsdoc: "off" */
 
-'use strict'
+'use strict';
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -10,20 +10,20 @@ module.exports = appInfo => {
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = (exports = {})
+  const config = (exports = {});
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1573714749865_7145'
+  config.keys = appInfo.name + '_1573714749865_7145';
 
   // add your middleware config here
-  config.middleware = []
+  config.middleware = [];
   config.view = {
     mapping: {
-      '.html': 'nunjucks'
-    }
-  }
+      '.html': 'nunjucks',
+    },
+  };
   // 配置需要的中间件，数组顺序即为中间件的加载顺序
-  config.middleware = ['login', 'errorHandler']
+  config.middleware = [ 'login', 'errorHandler' ];
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
@@ -31,12 +31,12 @@ module.exports = appInfo => {
       csrf: {
         enable: false,
         queryName: '_csrf', // 通过 query 传递 CSRF token 的默认字段为 _csrf
-        bodyName: '_csrf' // 通过 body 传递 CSRF token 的默认字段为 _csrf
-      }
-    }
-  }
+        bodyName: '_csrf', // 通过 body 传递 CSRF token 的默认字段为 _csrf
+      },
+    },
+  };
   return {
     ...config,
-    ...userConfig
-  }
-}
+    ...userConfig,
+  };
+};
