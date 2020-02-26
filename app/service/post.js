@@ -33,15 +33,19 @@ class PostService extends Service {
       return resCreateTitle;
     }
   }
-  async find(params, limmit) {
+  async find(params = {}, option = {}) {
     const { ctx } = this;
     const resFind = await ctx.model.Post.find({
       ...params,
+      // text: { $size: 50 },
+    }, {
+      content: 0,
+      text: { $slice: 50 },
     })
       .sort({
         createTime: -1,
       })
-      .limit(parseInt(limmit.length));
+      .limit(option.pageSize);
     return resFind;
   }
   async edit(params) {
