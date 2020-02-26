@@ -12,7 +12,7 @@ class PostController extends Controller {
     const params = ctx.request.query;
     const res = await ctx.service.post.find(params);
     res.forEach(item => {
-      item.text = (item.text || '').slice(0, 200);
+      item.text = (item.text || '').slice(0, params.textLength || 50);
     });
     ctx.helper.success(res);
   }
