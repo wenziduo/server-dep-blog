@@ -1,34 +1,24 @@
 'use strict';
 const Service = require('egg').Service;
 class ClassifyService extends Service {
-  async create() {
+  async create(params) {
     const { ctx } = this;
-    const {
-      request: { body },
-    } = ctx;
     const resFind = await ctx.model.Classify.findOne({
-      title: body.title,
+      title: params.title,
     });
     if (resFind) {
       ctx.helper.error('该类别名重名');
       return;
     }
     const resCreate = await ctx.model.Classify.create({
-      ...body,
+      ...params,
     });
-    if (resCreate) {
-      ctx.helper.success('新建成功');
-    }
+    return resCreate;
   }
   async find() {
     const { ctx } = this;
-    const {
-      request: { query },
-    } = ctx;
     const resFind = await ctx.model.Classify.find().sort({ _id: -1 });
-    if (resFind) {
-      ctx.helper.success(resFind);
-    }
+    return resFind;
   }
   async update(params) {
     const { ctx } = this;

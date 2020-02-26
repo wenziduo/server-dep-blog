@@ -5,19 +5,24 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/api/home', controller.home.index);
-  router.get('/api/home/work', controller.home.work);
-  router.post('/api/user/login', controller.user.login);
-  router.get('/api/classify/find', controller.classify.find); // 查找分类
-  router.post('/api/classify/create', controller.classify.create); // 创建分类
-  router.post('/api/classify/update', controller.classify.update); // 编辑分类
-  router.post('/api/classify/delete', controller.classify.delete); // 删除分类
-  router.post('/api/post/create', controller.post.create); // 创建文章
-  router.get('/api/post/find', controller.post.find); // 文章列表
-  router.get('/api/post/detail', controller.post.detail); // 文章详情
-  router.get('/api/post/test', controller.post.test); // 文章详情
-  router.post('/api/post/edit', controller.post.edit); // 文章编辑
-  router.post('/api/post/delete', controller.post.delete); // 文章删除
+  router.get('/api/blog/home', controller.blog.home.index);
+  // router.get('/api/blog/home/work', controller.blog.home.work);
+  router.get('/api/blog/classify/find', controller.blog.classify.find); // 查找分类
+  router.get('/api/blog/post/find', controller.blog.post.find); // 文章列表
+  router.get('/api/blog/post/detail', controller.blog.post.detail); // 文章详情
   // 第三方
-  router.get('/api/qiniu/getQiniuToken', controller.qiniu.getQiniuToken); // 文获取七牛token
+  router.get('/api/blog/qiniu/getQiniuToken', controller.common.qiniu.getQiniuToken); // 文获取七牛token
+  // 后台
+  router.post('/api/admin-blog/user/login', controller.adminBlog.user.login);
+  router.get('/api/admin-blog/classify/find', controller.adminBlog.classify.find); // 查找分类
+  router.post('/api/admin-blog/classify/create', controller.adminBlog.classify.create); // 创建分类
+  router.post('/api/admin-blog/classify/update', controller.adminBlog.classify.update); // 编辑分类
+  router.post('/api/admin-blog/classify/delete', controller.adminBlog.classify.delete); // 删除分类
+  router.get('/api/admin-blog/post/find', controller.adminBlog.post.find); // 文章列表
+  router.get('/api/admin-blog/post/detail', controller.adminBlog.post.detail); // 文章详情
+  router.post('/api/admin-blog/post/create', controller.adminBlog.post.create); // 创建文章
+  router.post('/api/admin-blog/post/edit', controller.adminBlog.post.edit); // 文章编辑
+  router.post('/api/admin-blog/post/delete', controller.adminBlog.post.delete); // 文章删除
+  // 第三方
+  router.get('/api/admin-blog/qiniu/getQiniuToken', controller.common.qiniu.getQiniuToken); // 文获取七牛token
 };

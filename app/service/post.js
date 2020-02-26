@@ -30,19 +30,18 @@ class PostService extends Service {
     ).count();
     await ctx.service.classify.updateCount({ _id: body.classifyId }, resCount);
     if (resCreateTitle) {
-      ctx.helper.success('创建成功');
+      return resCreateTitle;
     }
   }
-  async find(params) {
+  async find(params, limmit) {
     const { ctx } = this;
     const resFind = await ctx.model.Post.find({
       ...params,
-      length: undefined,
     })
       .sort({
         createTime: -1,
       })
-      .limit(parseInt(params.length));
+      .limit(parseInt(limmit.length));
     return resFind;
   }
   async edit(params) {

@@ -5,7 +5,8 @@ const Controller = require('egg').Controller;
 class PostController extends Controller {
   async create() {
     const { ctx } = this;
-    await ctx.service.post.create();
+    const resp = await ctx.service.post.create();
+    ctx.helper.success(resp);
   }
   async find() {
     const { ctx } = this;
@@ -31,28 +32,8 @@ class PostController extends Controller {
   async delete() {
     const { ctx } = this;
     const params = ctx.request.body;
-    await ctx.service.post.delete(params);
-  }
-  async test() {
-    const { ctx } = this;
-    const res = await ctx.model.Post.aggregate([
-      {
-        $lookup: {
-          from: 'classifies',
-          localField: 'classifyId',
-          foreignField: '_id',
-          as: 'classifyData',
-        },
-      },
-      {
-        $project: {
-          title: 1,
-          classifyId: 1,
-          classifyData: 1,
-        },
-      },
-    ]);
-    ctx.helper.success(res);
+    const resp = await ctx.service.post.delete(params);
+    ctx.helper.success(resp);
   }
 }
 
