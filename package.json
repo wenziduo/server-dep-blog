@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "egg-scripts start --env=prod --daemon --title=egg-server-example --ignore-stderr",
-    "test": "egg-scripts start --env=checkout --no-daemon --title=egg-server-example --ignore-stderr",
+    "test": "egg-scripts start --env=checkout --daemon --title=egg-server-example --ignore-stderr",
     "stop": "egg-scripts stop --title=egg-server-example",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
