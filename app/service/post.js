@@ -35,17 +35,40 @@ class PostService extends Service {
   }
   async find(params = {}, option = {}) {
     const { ctx } = this;
-    const resFind = await ctx.model.Post.find({
-      ...params,
-      // text: { $size: 50 },
+    // const resFind = await ctx.model.Post.find({
+    //   ...params,
+    //   // text: { $size: 50 },
+    // }, {
+    //   content: 0,
+    //   text: { $slice: 50 },
+    // })
+    //   .sort({
+    //     createTime: -1,
+    //   })
+    //   .limit(option.pageSize);
+    console.log('3333', 3333);
+    const resFind = await ctx.model.Post.aggregate([{
+      $match: {
+        author: '蚊子',
+      },
     }, {
-      content: 0,
-      text: { $slice: 50 },
-    })
-      .sort({
+      $sort: {
         createTime: -1,
-      })
-      .limit(option.pageSize);
+      },
+    }, {
+      $limit: option.pageSize || 100,
+    }, {
+      $project: {
+        title: 1,
+        author: 1,
+        creteTime: 1,
+        watch: 1,
+        text: {
+          $substrCP: [ '$text', 0, 50 ],
+        },
+      },
+    }]);
+    console.log('resFind', resFind);
     return resFind;
   }
   async edit(params) {
