@@ -11,7 +11,7 @@ class PostController extends Controller {
   async find() {
     const { ctx } = this;
     // const params = ctx.request.query;
-    const res = await ctx.service.post.find();
+    const res = await ctx.service.post.find({}, { pageSize: 30, substrLength: 30 });
     // res.forEach(item => {
     //   item.text = (item.text || '').slice(0, params.textLength || 50);
     // });
