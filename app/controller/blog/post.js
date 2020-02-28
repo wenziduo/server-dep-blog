@@ -9,9 +9,10 @@ class PostController extends Controller {
     ctx.helper.success(res);
   }
   async findList() {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const params = ctx.request.query;
-    const res = await ctx.service.post.find({ classifyId: params.classifyId }, { substrLength: 200 });
+    const ObjectId = app.mongoose.Types.ObjectId;
+    const res = await ctx.service.post.find({ classifyId: new ObjectId(params.classifyId) }, { substrLength: 200 });
     ctx.helper.success(res);
   }
   async detail() {

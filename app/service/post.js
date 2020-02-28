@@ -44,7 +44,7 @@ class PostService extends Service {
         createTime: -1,
       },
     }, {
-      $limit: option.pageSize || 100,
+      $limit: option.pageSize || 6,
     }, {
       $project: {
         title: 1,
