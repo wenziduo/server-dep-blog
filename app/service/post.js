@@ -35,21 +35,9 @@ class PostService extends Service {
   }
   async find(params = {}, option = {}) {
     const { ctx } = this;
-    // const resFind = await ctx.model.Post.find({
-    //   ...params,
-    //   // text: { $size: 50 },
-    // }, {
-    //   content: 0,
-    //   text: { $slice: 50 },
-    // })
-    //   .sort({
-    //     createTime: -1,
-    //   })
-    //   .limit(option.pageSize);
-    console.log('3333', 3333);
     const resFind = await ctx.model.Post.aggregate([{
       $match: {
-        author: '蚊子',
+        ...params,
       },
     }, {
       $sort: {
@@ -60,6 +48,7 @@ class PostService extends Service {
     }, {
       $project: {
         title: 1,
+        imgUrl: 1,
         author: 1,
         creteTime: 1,
         watch: 1,
