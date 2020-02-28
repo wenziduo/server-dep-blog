@@ -8,7 +8,8 @@ module.exports = app => {
   router.get('/api/blog/home', controller.blog.home.index);
   // router.get('/api/blog/home/work', controller.blog.home.work);
   router.get('/api/blog/classify/find', controller.blog.classify.find); // 查找分类
-  router.get('/api/blog/post/find', controller.blog.post.find); // 文章列表
+  router.get('/api/blog/post/findNewList', controller.blog.post.findNewList); // 最新文章列表
+  router.get('/api/blog/post/findList', controller.blog.post.findList); // 文章列表
   router.get('/api/blog/post/detail', controller.blog.post.detail); // 文章详情
   // 第三方
   router.get('/api/blog/qiniu/getQiniuToken', controller.common.qiniu.getQiniuToken); // 文获取七牛token
