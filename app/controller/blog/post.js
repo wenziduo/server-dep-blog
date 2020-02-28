@@ -3,13 +3,15 @@
 const Controller = require('egg').Controller;
 
 class PostController extends Controller {
-  async find() {
+  async findNewList() {
     const { ctx } = this;
     const params = ctx.request.query;
-    const res = await ctx.service.post.find({ classifyId: params.classifyId }, { pageSize: 5 });
-    res.forEach(item => {
-      item.text = (item.text || '').slice(0, params.textLength || 50);
-    });
+    const res = await ctx.service.post.find({ classifyId: params.classifyId }, { pageSize: 5, substrLength: 200 });
+    ctx.helper.success(res);
+  }
+  async findList() {
+    const { ctx } = this;
+    const res = await ctx.service.post.find({}, { substrLength: 200 });
     ctx.helper.success(res);
   }
   async detail() {

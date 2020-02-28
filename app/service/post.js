@@ -53,7 +53,7 @@ class PostService extends Service {
         creteTime: 1,
         watch: 1,
         text: {
-          $substrCP: [ '$text', 0, 50 ],
+          $substrCP: [ '$text', 0, option.substrLength || 50 ],
         },
       },
     }]);
