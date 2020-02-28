@@ -44,7 +44,7 @@ class PostService extends Service {
         createTime: -1,
       },
     }, {
-      $limit: option.pageSize || 6,
+      $limit: option.pageSize,
     }, {
       $project: {
         title: 1,
@@ -57,7 +57,6 @@ class PostService extends Service {
         },
       },
     }]);
-    console.log('resFind', resFind);
     return resFind;
   }
   async edit(params) {
