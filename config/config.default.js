@@ -15,15 +15,13 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1573714749865_7145';
 
-  // add your middleware config here
-  config.middleware = [];
   config.view = {
     mapping: {
       '.html': 'nunjucks',
     },
   };
   // 配置需要的中间件，数组顺序即为中间件的加载顺序
-  config.middleware = [ 'login', 'errorHandler' ];
+  config.middleware = [ 'login', 'adminLogin', 'errorHandler' ];
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',

@@ -15,6 +15,7 @@ module.exports = app => {
   router.get('/api/blog/qiniu/getQiniuToken', controller.common.qiniu.getQiniuToken); // 文获取七牛token
   // 后台
   router.post('/api/admin-blog/user/login', controller.adminBlog.user.login);
+  router.get('/api/admin-blog/user/getInfo', controller.adminBlog.user.getInfo);
   router.get('/api/admin-blog/classify/find', controller.adminBlog.classify.find); // 查找分类
   router.post('/api/admin-blog/classify/create', controller.adminBlog.classify.create); // 创建分类
   router.post('/api/admin-blog/classify/update', controller.adminBlog.classify.update); // 编辑分类

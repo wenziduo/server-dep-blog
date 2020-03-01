@@ -12,8 +12,6 @@ module.exports = appInfo => {
    **/
   const config = (exports = {});
 
-  // add your middleware config here
-  config.middleware = [];
   // 设置端口
   config.cluster = {
     listen: {
