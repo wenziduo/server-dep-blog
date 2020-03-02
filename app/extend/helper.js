@@ -8,10 +8,17 @@ module.exports = {
       success: true,
     };
   },
-  async error(message) {
+  error(message) {
     this.ctx.body = {
       message,
       success: false,
+    };
+  },
+  noLogin() {
+    this.ctx.body = {
+      message: '请登录',
+      success: false,
+      retternCode: '000000',
     };
   },
   // 获取session，回滚事务
