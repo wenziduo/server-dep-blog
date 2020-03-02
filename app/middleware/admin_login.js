@@ -3,7 +3,7 @@
 module.exports = () => {
   return async function(ctx, next) {
     const { path } = ctx.request;
-    if (path.search('admin-blog' !== -1 && path !== '/api/admin-blog/user/login')) {
+    if (path.search('admin-blog') !== -1 && path !== '/api/admin-blog/user/login') {
       const redisKey = ctx.cookies.get('sessionId');
       if (!redisKey) {
         ctx.helper.noLogin();
