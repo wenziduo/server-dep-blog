@@ -18,7 +18,7 @@ module.exports = {
     this.ctx.body = {
       message: '请登录',
       success: false,
-      retternCode: '000000',
+      returnCode: '000000',
     };
   },
   // 获取session，回滚事务
