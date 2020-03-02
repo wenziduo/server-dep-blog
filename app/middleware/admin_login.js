@@ -14,7 +14,6 @@ module.exports = () => {
         ctx.helper.noLogin();
         return;
       }
-      await next();
     }
     await next();
   };
