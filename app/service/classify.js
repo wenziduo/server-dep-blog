@@ -44,11 +44,11 @@ class ClassifyService extends Service {
   }
   async delete(params) {
     const { ctx } = this;
-    const postArray = await ctx.service.post.find({
+    const postCount = await ctx.service.post.findListCount({
       classifyId: params._id,
     });
-    if (postArray.length > 0) {
-      ctx.helper.error('请先删除该分类下的文章！');
+    if (postCount > 0) {
+      ctx.helper.error(`该分类下有${postCount}篇文章，请先删除该分类下的文章！`);
       return;
     }
     const resDel = await ctx.model.Classify.deleteOne({

@@ -185,5 +185,8 @@ class PostService extends Service {
     resFindOne.guessData = guessData;
     return resFindOne;
   }
+  async findListCount(params) {
+    return await this.ctx.model.Post.find({ ...params }).count();
+  }
 }
 module.exports = PostService;
