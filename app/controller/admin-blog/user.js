@@ -18,7 +18,7 @@ class UserController extends Controller {
       ctx.helper.error('用户名或密码错误');
     }
   }
-  async out() {
+  async logout() {
     const { ctx } = this;
     const sessionId = ctx.cookies.get('sessionId');
     const redisKey = `admin-${sessionId}-${moment().valueOf()}`;
