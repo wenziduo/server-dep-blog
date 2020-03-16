@@ -21,7 +21,7 @@ class UserController extends Controller {
   async logout() {
     const { ctx } = this;
     const sessionId = ctx.cookies.get('sessionId');
-    const redisKey = `admin-${sessionId}-${moment().valueOf()}`;
+    const redisKey = sessionId;
     await ctx.app.sessionStore.destroy(redisKey);
     ctx.helper.success('成功退出');
   }
