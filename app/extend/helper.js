@@ -41,18 +41,19 @@ module.exports = {
     });
   },
   // 分页
-  getPage(currentPage = 1, pageSize = 10) {
-    const skip = currentPage * pageSize + 1;
-    const limit = pageSize;
+  getPage(page = 1, pageSize = 10) {
+    const skip = Number(page) * Number(pageSize) + 1;
+    const limit = Number(pageSize);
     return {
       skip, limit,
     };
   },
   // 组装分页数据
-  getPageData(currentPage, pageSize, data) {
+  getPageData(page, pageSize, total, data) {
     return {
-      currentPage,
-      pageSize,
+      page: Number(page),
+      pageSize: Number(pageSize),
+      total: Number(total),
       data,
     };
   },

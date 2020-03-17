@@ -34,33 +34,37 @@ class PostService extends Service {
     }
   }
   async find(params = {}, option = {}) {
+    console.log('option', option);
     const { ctx } = this;
-    const pageState = ctx.helper.getPage(option.currentPage, option.pageSize);
-    const resFind = await ctx.model.Post.aggregate([{
-      $match: {
-        ...params,
-      },
-    }, {
-      $sort: {
-        createTime: -1,
-      },
-    }, {
-      $skip: pageState.skip,
-    }, {
-      $limit: pageState.limit,
-    }, {
-      $project: {
-        title: 1,
-        imgUrl: 1,
-        author: 1,
-        createTime: 1,
-        watch: 1,
-        text: {
-          $substrCP: [ '$text', 0, option.substrLength || 50 ],
+    const pageState = ctx.helper.getPage(option.page, option.pageSize);
+    const resFind = await ctx.model.Post.aggregate(
+      [{
+        $match: {
+          ...params,
         },
-      },
-    }]);
-    return ctx.helper.getPageData(resFind);
+      }, {
+        $sort: {
+          createTime: -1,
+        },
+      }, {
+        $skip: pageState.skip,
+      }, {
+        $limit: pageState.limit,
+      }, {
+        $project: {
+          title: 1,
+          imgUrl: 1,
+          author: 1,
+          createTime: 1,
+          watch: 1,
+          text: {
+            $substrCP: [ '$text', 0, option.substrLength || 50 ],
+          },
+        },
+      }]
+    );
+    const resCount = await ctx.model.Post.find().count();
+    return ctx.helper.getPageData(option.page, option.pageSize, resCount, resFind);
   }
   async edit(params) {
     const resp = await this.ctx.model.Post.updateOne({
