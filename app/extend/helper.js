@@ -40,4 +40,20 @@ module.exports = {
       return v.toString(16);
     });
   },
+  // 分页
+  getPage(currentPage = 1, pageSize = 10) {
+    const skip = currentPage * pageSize + 1;
+    const limit = pageSize;
+    return {
+      skip, limit,
+    };
+  },
+  // 组装分页数据
+  getPageData(currentPage, pageSize, data) {
+    return {
+      currentPage,
+      pageSize,
+      data,
+    };
+  },
 };

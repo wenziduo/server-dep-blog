@@ -35,6 +35,7 @@ class PostService extends Service {
   }
   async find(params = {}, option = {}) {
     const { ctx } = this;
+    const pageState = ctx.helper.getPage(option.currentPage, option.pageSize);
     const resFind = await ctx.model.Post.aggregate([{
       $match: {
         ...params,
@@ -44,7 +45,9 @@ class PostService extends Service {
         createTime: -1,
       },
     }, {
-      $limit: option.pageSize,
+      $skip: pageState.skip,
+    }, {
+      $limit: pageState.limit,
     }, {
       $project: {
         title: 1,
@@ -57,7 +60,7 @@ class PostService extends Service {
         },
       },
     }]);
-    return resFind;
+    return ctx.helper.getPageData(resFind);
   }
   async edit(params) {
     const resp = await this.ctx.model.Post.updateOne({
