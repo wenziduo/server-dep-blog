@@ -28,7 +28,7 @@ module.exports = {
         imgUrl: '//wenzi.douerpiao.club/db8c1a97-b51c-4d0c-8a60-ab71c6e8d35b?imageView2/1/w/120/h/120/interlace/1',
       },
     });
-    console.log('success', res);
+    // console.log('success', res);
     // ctx.app.cache = res.data;
   },
 };
