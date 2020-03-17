@@ -14,7 +14,7 @@ module.exports = {
     if (num >= 0.25 && num <= 0.5) { classifyId = '5e42c42492ba945d83e4edf2'; }
     if (num > 0.5 && num <= 0.75) { classifyId = '5e42c44f92ba945d83e4edf3'; }
     if (num > 0.75 && num <= 1.0) { classifyId = '5e4b84eea288fb6bc57c3d98'; }
-    const res = await ctx.curl('http://127.0.0.1:8018/api/admin-blog/post/create', {
+    const res = await ctx.curl('http://127.0.0.1:8019/api/admin-blog/post/create', {
       dataType: 'json',
       method: 'post',
       headers: {
