@@ -12,7 +12,7 @@ class PostController extends Controller {
     const { ctx, app } = this;
     const params = ctx.request.query;
     const ObjectId = app.mongoose.Types.ObjectId;
-    const res = await ctx.service.post.find({ classifyId: new ObjectId(params.classifyId) }, { substrLength: 200, page: params, pageSize: params.pageSize });
+    const res = await ctx.service.post.find({ classifyId: new ObjectId(params.classifyId) }, { substrLength: 200, page: params.page, pageSize: params.pageSize });
     ctx.helper.success(res);
   }
   async detail() {
