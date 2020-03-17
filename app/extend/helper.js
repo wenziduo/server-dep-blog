@@ -42,7 +42,7 @@ module.exports = {
   },
   // 分页
   getPage(page = 1, pageSize = 10) {
-    const skip = Number(page) * Number(pageSize) + 1;
+    const skip = (Number(page) - 1) * Number(pageSize);
     const limit = Number(pageSize);
     return {
       skip, limit, page, pageSize,
