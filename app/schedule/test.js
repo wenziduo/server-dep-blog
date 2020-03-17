@@ -18,7 +18,7 @@ module.exports = {
       dataType: 'json',
       method: 'post',
       headers: {
-        Cookie: 'sessionId=admin-0c0a576f-defa-4d26-845a-83d28cb42a38-1584413042918; sessionId.sig=gPV-ZpmtvJRRsfg8S47tLSD60hKlkhmfprv2t07YBRc',
+        Cookie: 'sessionId=admin-6957dc17-9c4c-4548-a24b-3bf941cf317f-1584448728892; sessionId.sig=pRtdZ4Wuy_DfnuwCrth3BVqaZv-OI9SUOaOBEDTlt_o',
       },
       data: {
         title: 'egg定时任务' + uuid,
@@ -29,6 +29,6 @@ module.exports = {
       },
     });
     console.log('success', res);
-    ctx.app.cache = res.data;
+    // ctx.app.cache = res.data;
   },
 };
