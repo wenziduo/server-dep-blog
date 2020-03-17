@@ -34,7 +34,6 @@ class PostService extends Service {
     }
   }
   async find(params = {}, option = {}) {
-    console.log('option', option);
     const { ctx } = this;
     const pageState = ctx.helper.getPage(option.page, option.pageSize);
     const resFind = await ctx.model.Post.aggregate(
@@ -63,7 +62,7 @@ class PostService extends Service {
         },
       }]
     );
-    const resCount = await ctx.model.Post.find().count();
+    const resCount = await ctx.model.Post.find({ ...params }).count();
     return ctx.helper.getPageData(pageState.page, pageState.pageSize, resCount, resFind);
   }
   async edit(params) {
