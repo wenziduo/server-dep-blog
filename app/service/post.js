@@ -50,7 +50,7 @@ class PostService extends Service {
         title: 1,
         imgUrl: 1,
         author: 1,
-        creteTime: 1,
+        createTime: 1,
         watch: 1,
         text: {
           $substrCP: [ '$text', 0, option.substrLength || 50 ],
