@@ -45,7 +45,7 @@ module.exports = {
     const skip = Number(page) * Number(pageSize) + 1;
     const limit = Number(pageSize);
     return {
-      skip, limit,
+      skip, limit, page, pageSize,
     };
   },
   // 组装分页数据

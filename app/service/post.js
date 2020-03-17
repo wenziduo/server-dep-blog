@@ -64,7 +64,7 @@ class PostService extends Service {
       }]
     );
     const resCount = await ctx.model.Post.find().count();
-    return ctx.helper.getPageData(option.page, option.pageSize, resCount, resFind);
+    return ctx.helper.getPageData(pageState.page, pageState.pageSize, resCount, resFind);
   }
   async edit(params) {
     const resp = await this.ctx.model.Post.updateOne({
