@@ -6,7 +6,7 @@ module.exports = {
     type: 'all', // 指定所有的 worker 都需要执行
   },
   async task(ctx) {
-    return
+    // return
     const uuid = ctx.helper.uuid();
     let classifyId = null;
     const num = Math.random();
