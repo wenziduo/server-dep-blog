@@ -6,7 +6,7 @@ module.exports = {
     type: 'all', // 指定所有的 worker 都需要执行
   },
   async task(ctx) {
-    return
+    // return
     const uuid = ctx.helper.uuid();
     let classifyId = null;
     const num = Math.random();
@@ -18,7 +18,7 @@ module.exports = {
       dataType: 'json',
       method: 'post',
       headers: {
-        Cookie: 'sessionId=admin-6957dc17-9c4c-4548-a24b-3bf941cf317f-1584448728892; sessionId.sig=pRtdZ4Wuy_DfnuwCrth3BVqaZv-OI9SUOaOBEDTlt_o',
+        Cookie: 'sessionId=admin-997cae5b-e4d3-464d-8989-99ac0677dc35-1584581857571; sessionId.sig=Is0nYU23qA77CYUcwahwVJKR4Qx95PK6PF-bgstj9mE',
       },
       data: {
         title: 'egg定时任务' + uuid,

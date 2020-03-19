@@ -14,7 +14,7 @@ module.exports = app => {
       author: { type: String, default: '蚊子' },
       createTime: { type: Date },
       modifyTime: { type: Date },
-      classifyId: { type: Schema.Types.ObjectId },
+      classifyId: { type: Schema.Types.ObjectId, required: true },
     },
     {
       versionKey: false,

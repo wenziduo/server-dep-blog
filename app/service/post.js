@@ -57,7 +57,7 @@ class PostService extends Service {
           createTime: 1,
           watch: 1,
           text: {
-            $substrCP: [ '$text', 0, option.substrLength || 50 ],
+            $substrCP: ['$text', 0, option.substrLength || 50],
           },
         },
       }]
@@ -77,12 +77,17 @@ class PostService extends Service {
     }
   }
   async delete(params) {
+    console.log('params', params);
     const session = await this.ctx.helper.getSession();
     let resp;
     try {
       console.log('开始');
-      resp = await this.ctx.model.Post.deleteOne({
-        _id: params._id,
+      const reg = new RegExp(params.title, 'i'); // 不区分大小写
+      resp = await this.ctx.model.Post.deleteMany({
+        // _id: params._id,
+        $or: [
+          { title: { $regex: reg } },
+        ],
       });
       console.log('resp', resp);
       const resCount = await this.ctx.service.post.getClassifyCount(params);
