@@ -60,9 +60,10 @@ class PostService extends Service {
             $substrCP: ['$text', 0, option.substrLength || 50],
           },
         },
-      }, {
+      }],
+      {
         allowDiskUse: true,
-      }]
+      }
     );
     const resCount = await ctx.model.Post.find({ ...params }).count();
     return ctx.helper.getPageData(pageState.page, pageState.pageSize, resCount, resFind);
