@@ -6,31 +6,31 @@ class PostController extends Controller {
   async create() {
     const { ctx } = this;
     const resp = await ctx.service.post.create();
-    ctx.helper.success(resp);
+    if (resp) ctx.helper.success(resp);
   }
   async find() {
     const { ctx } = this;
     const params = ctx.request.query;
     const res = await ctx.service.post.find({}, { substrLength: 20, ...params });
-    ctx.helper.success(res);
+    if (res) ctx.helper.success(res);
   }
   async detail() {
     const { ctx } = this;
     const params = ctx.request.query;
     const res = await ctx.service.post.detail(params);
-    ctx.helper.success(res);
+    if (res) ctx.helper.success(res);
   }
   async edit() {
     const { ctx } = this;
     const params = ctx.request.body;
     const res = await ctx.service.post.edit(params);
-    ctx.helper.success(res);
+    if (res) ctx.helper.success(res);
   }
   async delete() {
     const { ctx } = this;
     const params = ctx.request.body;
     const resp = await ctx.service.post.delete(params);
-    ctx.helper.success(resp);
+    if (resp) ctx.helper.success(resp);
   }
 }
 

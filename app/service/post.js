@@ -15,6 +15,7 @@ class PostService extends Service {
       _id: body.classifyId,
     });
     if (!resFindClassify) {
+      ctx.helper.error('没有该分类');
       return;
     }
     const resCreateTitle = await ctx.model.Post.create({
