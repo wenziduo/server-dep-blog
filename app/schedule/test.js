@@ -2,7 +2,7 @@
 
 module.exports = {
   schedule: {
-    interval: '1s', // 1 分钟间隔
+    interval: '100ms', // 1 分钟间隔
     type: 'all', // 指定所有的 worker 都需要执行
   },
   async task(ctx) {
@@ -17,7 +17,7 @@ module.exports = {
       dataType: 'json',
       method: 'post',
       headers: {
-        Cookie: 'sessionId=admin-997cae5b-e4d3-464d-8989-99ac0677dc35-1584581857571; sessionId.sig=Is0nYU23qA77CYUcwahwVJKR4Qx95PK6PF-bgstj9mE',
+        Cookie: 'sessionId=admin-963a9b2e-7e3d-4ac7-82b1-4878b382e964-1584675944373; sessionId.sig=fGE0aaVCLDLdZMr5VItnDZW1Q6HKNpUwDa5Zbg8lt58',
       },
       data: {
         title: 'egg定时任务' + uuid,
