@@ -18,18 +18,25 @@ class PostService extends Service {
       ctx.helper.error('没有该分类');
       return;
     }
+    const params = { ...body };
     const resCreateTitle = await ctx.model.Post.create({
-      ...body,
+      title: params.title,
+      classifyId: params.classifyId,
+      imgUrl: params.imgUrl,
+      contentUrl: params.contentUrl,
+      markdownUrl: params.markdownUrl,
+      textUrl: params.textUrl,
+      introduction: params.introduction,
       createTime: new Date(),
       modifyTime: new Date(),
     });
     const resCount = await ctx.model.Post.find(
       {
-        classifyId: body.classifyId,
+        classifyId: params.classifyId,
       },
       { _id: 1 }
     ).count();
-    await ctx.service.classify.updateCount({ _id: body.classifyId }, resCount);
+    await ctx.service.classify.updateCount({ _id: params.classifyId }, resCount);
     if (resCreateTitle) {
       return resCreateTitle;
     }
@@ -55,11 +62,12 @@ class PostService extends Service {
           title: 1,
           imgUrl: 1,
           author: 1,
+          introduction: 1,
           createTime: 1,
           watch: 1,
-          text: {
-            $substrCP: ['$text', 0, option.substrLength || 50],
-          },
+          // text: {
+          //   $substrCP: [ '$minText', 0, option.substrLength || 50 ],
+          // },
         },
       }]
     ).allowDiskUse(true);
@@ -120,6 +128,8 @@ class PostService extends Service {
     return resCount;
   }
   async detail(params) {
+    const StringDecoder = require('string_decoder').StringDecoder;
+    const decoder = new StringDecoder('utf8');
     const { ctx } = this;
     const oldResFindOne = await ctx.model.Post.findOneAndUpdate(
       {
@@ -133,6 +143,7 @@ class PostService extends Service {
       }
     );
     const resFindOne = oldResFindOne.toJSON({ getters: true }); // console.log('resFindOne.title', resFindOne.title)
+    // 请求详情数据
     const classifyFindOne = await ctx.model.Classify.findOne({
       _id: resFindOne.classifyId,
     });
@@ -141,7 +152,19 @@ class PostService extends Service {
       ctx.header.error('文章id不正确');
       return;
     }
+    console.log('oldResFindOne数据：', oldResFindOne);
+    // 请求oss文章
+    // const resText = await ctx.curl('http://wenzi.douerpiao.club/test.txt');
+    // const strText = decoder.write(Buffer.from(resText.data));
+    // 请求oss文章markdown
+    console.log('开始请求oss markdown');
+    const resTextMarkdown = await ctx.curl(oldResFindOne.markdownUrl);
+    console.log('结束请求oss markdown');
+    console.log('结果为', resTextMarkdown);
+    const strMarkdown = decoder.write(Buffer.from(resTextMarkdown.data));
     resFindOne.classifyData = classifyFindOne;
+    // resFindOne.text = strText;
+    resFindOne.markdown = strMarkdown;
     // 上一篇和下一篇
     const prevData = await ctx.model.Post.find(
       {
@@ -151,7 +174,7 @@ class PostService extends Service {
       {
         _id: 1,
         title: 1,
-        text: 1,
+        introduction: 1,
         imgUrl: 1,
       }
     )
@@ -165,7 +188,7 @@ class PostService extends Service {
       {
         _id: 1,
         title: 1,
-        text: 1,
+        introduction: 1,
         imgUrl: 1,
       }
     )
@@ -186,7 +209,7 @@ class PostService extends Service {
       {
         _id: 1,
         title: 1,
-        text: 1,
+        introduction: 1,
         imgUrl: 1,
       }
     )
