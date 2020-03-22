@@ -20,7 +20,7 @@ module.exports = {
     // const str = decoder.write(Buffer.from(resText.data));
     // console.log(str); // 你
     // console.log('resBuffer', str);
-    const res = await ctx.curl('http://127.0.0.1:8018/api/admin-blog/post/create', {
+    const res = await ctx.curl('http://127.0.0.1:8019/api/admin-blog/post/create', {
       dataType: 'json',
       method: 'post',
       headers: {
