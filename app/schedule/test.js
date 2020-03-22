@@ -2,11 +2,10 @@
 
 module.exports = {
   schedule: {
-    interval: '20s', // 1 分钟间隔
+    interval: '50ms', // 1 分钟间隔
     type: 'all', // 指定所有的 worker 都需要执行
   },
   async task(ctx) {
-    return;
     const uuid = ctx.helper.uuid();
     let classifyId = null;
     const num = Math.random();
@@ -21,18 +20,19 @@ module.exports = {
     // const str = decoder.write(Buffer.from(resText.data));
     // console.log(str); // 你
     // console.log('resBuffer', str);
-    const res = await ctx.curl('http://127.0.0.1:8019/api/admin-blog/post/create', {
+    const res = await ctx.curl('http://127.0.0.1:8018/api/admin-blog/post/create', {
       dataType: 'json',
       method: 'post',
       headers: {
-        Cookie: 'sessionId=admin-963a9b2e-7e3d-4ac7-82b1-4878b382e964-1584675944373; sessionId.sig=fGE0aaVCLDLdZMr5VItnDZW1Q6HKNpUwDa5Zbg8lt58',
+        Cookie: 'sessionId=admin-7ef30a91-db6c-4c24-a8cc-1c28712e1ff0-1584876380487; sessionId.sig=N6GZYQq-wr_T-ETJLOjpNmnuGRcBSOG2TKOldT2k0fs',
       },
       data: {
         title: 'egg定时任务' + uuid,
         classifyId,
-        content: 'http://wenzi.douerpiao.club/markdown.txt',
-        text: 'http://wenzi.douerpiao.club/test.txt',
+        markdownUrl: 'http://wenzi.douerpiao.club/markdown.txt',
+        textUrl: 'http://wenzi.douerpiao.club/test.txt',
         imgUrl: '//wenzi.douerpiao.club/003b03fc-1eb9-4818-9ad7-5ef28389628f?imageView2/1/w/120/h/120/interlace/1',
+        introduction: '测试简介，最多100字。嗯 我来试试，测试简介，最多100字。嗯 我来试试，测试简介，最多100字。嗯 我来试试，测试简介，最多100字。嗯 我来试试，测试简介，最多100字。嗯 我来试试，测试简介，最多100字。嗯 我来试试，',
       },
     });
     console.log('success', res);
