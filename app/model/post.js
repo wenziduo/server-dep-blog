@@ -13,7 +13,7 @@ module.exports = app => {
       introduction: { type: String, required: true, index: true },
       watch: { type: Number, default: 0 },
       author: { type: String, default: '蚊子' },
-      createTime: { type: Date },
+      createTime: { type: Date, default: new Date() },
       modifyTime: { type: Date },
       classifyId: { type: Schema.Types.ObjectId, required: true },
     },

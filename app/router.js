@@ -11,6 +11,8 @@ module.exports = app => {
   router.get('/api/blog/post/findNewList', controller.blog.post.findNewList); // 最新文章列表
   router.get('/api/blog/post/findList', controller.blog.post.findList); // 文章列表
   router.get('/api/blog/post/detail', controller.blog.post.detail); // 文章详情
+  router.post('/api/blog/statistics/create', controller.blog.statistics.create); // 统计新增
+  router.get('/api/blog/statistics/find', controller.blog.statistics.find); // 统计查询
   // 第三方
   router.get('/api/blog/qiniu/getQiniuToken', controller.common.qiniu.getQiniuToken); // 文获取七牛token
   // 后台
