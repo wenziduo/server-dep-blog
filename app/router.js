@@ -28,6 +28,7 @@ module.exports = app => {
   router.post('/api/admin-blog/post/create', controller.adminBlog.post.create); // 创建文章
   router.post('/api/admin-blog/post/edit', controller.adminBlog.post.edit); // 文章编辑
   router.post('/api/admin-blog/post/delete', controller.adminBlog.post.delete); // 文章删除
+  router.get('/api/admin-blog/statistics/find', controller.adminBlog.statistics.find); // 统计查询
   // 第三方
   router.get('/api/admin-blog/qiniu/getQiniuToken', controller.common.qiniu.getQiniuToken); // 文获取七牛token
 };
