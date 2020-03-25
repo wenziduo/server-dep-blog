@@ -21,7 +21,7 @@ module.exports = appInfo => {
     },
   };
   // 配置需要的中间件，数组顺序即为中间件的加载顺序
-  config.middleware = [ 'login', 'adminLogin', 'errorHandler' ];
+  config.middleware = [ 'login', 'adminLogin', 'errorHandler', 'blogStatistics' ];
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
