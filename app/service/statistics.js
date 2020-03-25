@@ -13,8 +13,8 @@ class StatisticsService extends Service {
       const resp = await this.ctx.model.Statistics.findOne({
         type,
         createTime: {
-          $gte: new Date(moment().startOf('month').format('YYYY-MM-DD HH:mm:ss')),
-          $lte: new Date(moment().endOf('month').format('YYYY-MM-DD HH:mm:ss')),
+          $gte: new Date(moment().format('YYYY-MM-DD HH:mm:ss')),
+          $lte: new Date(moment().format('YYYY-MM-DD HH:mm:ss')),
         },
         ip: this.ctx.request.ip,
       });
