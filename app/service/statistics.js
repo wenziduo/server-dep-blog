@@ -13,8 +13,8 @@ class StatisticsService extends Service {
       const resp = await this.ctx.model.Statistics.findOne({
         type,
         createTime: {
-          $gte: new Date(moment().format('YYYY-MM-DD HH:mm:ss')),
-          $lte: new Date(moment().format('YYYY-MM-DD HH:mm:ss')),
+          $gte: new Date(moment().startOf('day').format('YYYY-MM-DD HH:mm:ss')),
+          $lte: new Date(moment().endOf('day').format('YYYY-MM-DD HH:mm:ss')),
         },
         ip: this.ctx.request.ip,
       });
@@ -26,6 +26,7 @@ class StatisticsService extends Service {
     const resp = await this.ctx.model.Statistics.create({
       type,
       ip: this.ctx.request.ip,
+      // createTime: new Date(),
     });
     return resp;
   }
