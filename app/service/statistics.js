@@ -13,8 +13,8 @@ class StatisticsService extends Service {
       const resp = await this.ctx.model.Statistics.findOne({
         type,
         createTime: {
-          $gte: new Date(moment().startOf('month').format('YYYY-MM-DD HH:mm:ss')),
-          $lte: new Date(moment().endOf('month').format('YYYY-MM-DD HH:mm:ss')),
+          $gte: new Date(moment().startOf('day').format('YYYY-MM-DD HH:mm:ss')),
+          $lte: new Date(moment().endOf('day').format('YYYY-MM-DD HH:mm:ss')),
         },
         ip: this.ctx.request.ip,
       });
@@ -26,6 +26,7 @@ class StatisticsService extends Service {
     const resp = await this.ctx.model.Statistics.create({
       type,
       ip: this.ctx.request.ip,
+      // createTime: new Date(),
     });
     return resp;
   }
@@ -36,7 +37,10 @@ class StatisticsService extends Service {
     const pageState = this.ctx.helper.getPage(option.page, option.pageSize);
     const resp = await this.ctx.model.Statistics.find({
       type,
-    }).skip(pageState.skip).limit(pageState.limit);
+    })
+      .sort({ createTime: -1 })
+      .skip(pageState.skip)
+      .limit(pageState.limit);
     const resCount = await this.ctx.model.Statistics.find({ type }).count();
     return this.ctx.helper.getPageData(pageState.page, pageState.pageSize, resCount, resp);
   }

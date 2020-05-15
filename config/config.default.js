@@ -14,7 +14,8 @@ module.exports = appInfo => {
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1573714749865_7145';
-
+  config.proxy = true;
+  config.ipHeaders = 'X-Real-Ip, X-Forwarded-For';
   config.view = {
     mapping: {
       '.html': 'nunjucks',
